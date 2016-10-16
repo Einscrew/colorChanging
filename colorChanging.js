@@ -1,40 +1,73 @@
 var COLOR = ["Pink","Black","White","Yellow","Orange","Red","Purple","Blue","Brown","Grey","Green"];
 var FONT = ["\"Courier New\", Courier, monospace", "\"Comic Sans MS\", cursive, sans-serif", "\"Palatino Linotype\", \"Book Antiqua\", Palatino, serif"];
+var currentColor;
 
-$(document).ready(function(){
-	/*$("*").keydown(function(event){
-		console.log(INPUT += event.which+".");
-		if(INPUT == "65.65.71.71.79.79.83.83.84.84.79.79."){*/
 
-				$("#theme").click(function(){
+/*$("*").keydown(function(event){
+	console.log(INPUT += event.which+".");
+	if(INPUT == "65.65.71.71.79.79.83.83.84.84.79.79."){*/
+
+
+
+
+/*--------------------------------jQuery-------------------------------------------*/
+/**/
+/**/$(document).ready(function(){
+				var test = $('<button/>',{
+				        text: 'Change Me',
+				        click: function () {
+									$( "*" ).css({
+					    			"color": genColor(),
+										"background-color": genColor(),
+										"font-family": genFont(),
+										"font-size": genSize().toString() + "px"
+									);
+								}
+				    });
+						var parent = $('body').prepend(test);
+
+
+
+/*
+Alternative method,
+when you have a button
+with #theme ID
+*/
+//SIMPLER WAY
+			/*	$("#theme").click(function(){
 					$( "*" ).css({
 						"color": genColor(),
 						"background-color": genColor(),
 						"font-family": genFont(),
 						"font-size": genSize().toString() + "px",
-					}).length;
-				});
+					});
+				});*/
 });
+/*--------------------------------jQuery-------------------------------------------*/
 
-function Color(Id, Color){	Id.style.color = Color; return Color;}
 
-function FontBackGround(Id, Color){	Id.style.backgroundColor = Color;}
 
-function BackGround(Id, Color){ document.body.style.backgroundColor = Color; }
 
-function Font(Id, Font){	Id.style.fontFamily = Font;}
 
-function Size(Id, Size){	Id.style.fontSize = Size;}
+function genColor(){ //gera um cor do array de cores
+	var newColor;
 
-function genColor(){ return COLOR[Math.floor(Math.random()*11)];}
+	//to avoid color repetitiom
+	do{
+			newColor = COLOR[Math.floor(Math.random()*COLOR.length)]; // .length to add or remove elements from COLOR[]
+	}while(newColor == currentColor)
 
-function genFont(){ return FONT[Math.floor(Math.random()*3)];}
+	currentColor = newColor; //atualiza a cor atual
+	return currentColor;
+}
+
+function genFont(){ return FONT[Math.floor(Math.random()*FONT.length)];}
 
 function genSize(){
 	var s;
 	do{
 		s = Math.floor(Math.random()*100);
 	}while(s < 4);
-	
+
 	return s + "px";
 }
