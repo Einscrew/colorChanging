@@ -1,2 +1,2 @@
 # colorChanging
-jQuery code to change css properties of all elements in a web page
+jQuery and JavaScript code to change css properties of all elements in a web page
